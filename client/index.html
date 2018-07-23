@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>SNAKE</title>
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="score">Score :
+        <span>0</span>
+    </div>
+    <div id="game">
+        <div id="apple" class="apple"></div>
+        <div id="menu" >
+            <h1>SNAKE</h1>
+            <h3>
+                Choisir la vitesse
+                <select class="custom-select" value="3">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </h3>
+            <div class="flex">
+                <div class="column">
+                    <img alt="arrow-keys" class="arrow-keys" src="game/img/arrow-keys3.png" />
+                    <h3>Direction</h3>
+                </div>
+                <div class="column">
+                    <img alt="space-key" class="space-key" src="game/img/space-key.png" />
+                    <h3>ESPACE : mettre le jeu en pause</h3>
+                </div>
+            </div>
+            <h2 class="green">Appuyer sur n'importe quelle touche pour jouer</h2>
+        </div>
+        <div id="menu-end" class="game-over">
+            <h1>Game Over</h1>
+            <h2 id="scoreEnd"></h2>
+            <h3 class="green">Rentrez votre pseudo</h3>
+            <input type="text" class="score-input" autofocus></input>
+        </div>
+        <div id="best-scores">
+            <h1>Best scores</h1> 
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="game/script.js"></script>
