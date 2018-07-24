@@ -1,7 +1,27 @@
 [
-    {
-        "name" : "test",
-        "score" : 500,
-        "speed": 3
-    }
+  {
+    "name": "Sophie",
+    "score": 1,
+    "speed": "3"
+  },
+  {
+    "name": "cccvv",
+    "score": 0,
+    "speed": "3"
+  },
+  {
+    "name": "ccc",
+    "score": 0,
+    "speed": "3"
+  },
+  {
+    "name": "ccc",
+    "score": 1,
+    "speed": "3"
+  },
+  {
+    "name": "ccvvv",
+    "score": 0,
+    "speed": "3"
+  }
 ]

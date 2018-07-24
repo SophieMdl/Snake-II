@@ -151,9 +151,25 @@ const gameOver = () => {
             for(let snakeSlice of snake){
                 snakeSlice.style.display = "none"
             }
-            displayBestScores();
+            postScore(event.target.value)
+            
         }
     })
+    const postScore = (name) => {
+        window.fetch(`http://localhost:3000/post-scores`, {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name,   
+              score: scoreValue,
+              speed: select.value
+            })
+          })
+          .then(() => displayBestScores())
+            // .then(res => emailInput.setCustomValidity((res) ? '' : 'Ce email est déjà utilisé.'))
+    }
     const fetchBestScore = () => {
         return new Promise(resolve => 
             window.fetch('http://localhost:3000/scores')

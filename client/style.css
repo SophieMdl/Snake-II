@@ -138,6 +138,9 @@ select {
     font-size : 1.8rem;
     font-weight : 600;
 }
+.tab span{
+    margin-bottom: 10px;
+}
 .tab{
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
