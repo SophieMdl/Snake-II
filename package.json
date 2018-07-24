@@ -1,16 +1,20 @@
 {
-  "name": "electron",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "dependencies": {
     "electron": "^2.0.5",
     "electron-devtools-installer": "^2.2.4",
-    "electron-reload": "^1.2.5"
+    "electron-reload": "^1.2.5",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.3"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "server": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC"

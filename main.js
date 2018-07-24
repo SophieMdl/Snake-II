@@ -9,7 +9,7 @@ const createWindow = () => {
     icon: 'img/snake-icon.png',
     title: 'SNAKE'
   })
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('client/index.html')
 }
 
 app.on('ready', createWindow)
