@@ -151,9 +151,27 @@ const gameOver = () => {
             for(let snakeSlice of snake){
                 snakeSlice.style.display = "none"
             }
-            bestScores.style.display = "block";
+            displayBestScores();
         }
     })
+    const fetchBestScore = () => {
+        return new Promise(resolve => 
+            window.fetch('http://localhost:3000/scores')
+                .then(res => res.json())
+                .then(scores => {
+                    resolve(scores);
+                })
+            )
+    }
+    const displayBestScores = async() => {
+        bestScores.style.display = "block";
+        const scores = await fetchBestScore()
+        document.getElementById('players-score').innerHTML = scores.map(score => {
+            return (`<span>${score.name}</span>
+                    <span>${score.score}</span>
+                    <span>${score.speed}</span>`)
+        }).join('')
+    } 
     // window.addEventListener('keydown', () => {
     //     window.location.reload();
     // });
@@ -162,16 +180,10 @@ const gameOver = () => {
 
 const init = () => {
     //Initialisation du jeu :
-    //Disparition du menu, placement de la pomme et création du serpent 
-    //Bouce qui dépend de la vitesse définie :
-    //1 : 100ms
-    //2 : 80ms
-    //3 : 60ms
-    //4 : 40ms
-    //5 : 20ms
     menu.style.display = "none";
     resetApple();
     snakeBody();
+    //Vitesse qui dépend de la vitesse définie :
     userSpeed = 100 - 20 * (select.value - 1);
     setInterval(loop, userSpeed);
     window.removeEventListener('keydown', init);
