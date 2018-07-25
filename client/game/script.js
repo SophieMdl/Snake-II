@@ -143,15 +143,15 @@ const gameOver = () => {
     menuEnd.style.display = "flex";
     scoreEnd.innerHTML = "Score : " + scoreValue;
     window.removeEventListener('keydown', listenerKeyboard)
-    window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', pressEnter = (e) => {
         if(e.which === 13){
             menuEnd.style.display = "none";
             apple.elem.style.display = "none";
-            const snake = document.getElementsByClassName('snake')
+            const snake = document.getElementsByClassName('snake');
             for(let snakeSlice of snake){
-                snakeSlice.style.display = "none"
+                snakeSlice.style.display = "none";
             }
-            postScore(event.target.value)
+            postScore(event.target.value);
         }
     })
     const postScore = (name) => {
@@ -185,6 +185,7 @@ const gameOver = () => {
                     <span>${score.speed}</span>`)
         }).join('')
     } 
+    window.removeEventListener('keydown', pressEnter)
     window.addEventListener('keydown', (e) => {
         if(e.which === 27){
             window.location.reload()

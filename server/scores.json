@@ -1,7 +1,22 @@
 [
   {
+    "name": "soso",
+    "score": 10,
+    "speed": "3"
+  },
+  {
     "name": "Sophie",
     "score": 6,
+    "speed": "3"
+  },
+  {
+    "name": "Al",
+    "score": 4,
+    "speed": "4"
+  },
+  {
+    "name": "test",
+    "score": 3,
     "speed": "3"
   },
   {
@@ -17,6 +32,21 @@
   {
     "name": "",
     "score": 2,
+    "speed": "3"
+  },
+  {
+    "name": "",
+    "score": 2,
+    "speed": "3"
+  },
+  {
+    "name": "pssd",
+    "score": 1,
+    "speed": "3"
+  },
+  {
+    "name": "",
+    "score": 1,
     "speed": "3"
   }
 ]
