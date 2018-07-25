@@ -1,5 +1,5 @@
+const port = process.env.PORT || 3000
 let pause = false;
-
 let snakeSlice;
 let tail;
 let head;
@@ -155,8 +155,8 @@ const gameOver = () => {
         }
     })
     const postScore = (name) => {
-        console.log("postScore");
-        fetch(`http://localhost:3000/post-scores`, {
+
+        fetch(`${port}/post-scores`, {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
@@ -170,8 +170,7 @@ const gameOver = () => {
           .then(() => fetchBestScore())
     }
     const fetchBestScore = () => {
-        console.log("fetch");
-        window.fetch('http://localhost:3000/scores')
+        window.fetch(`http://${port}/scores`)
             .then(res => res.json())
             .then(scores => {
                 displayBestScores(scores)

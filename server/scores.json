@@ -1,5 +1,10 @@
 [
   {
+    "name": "Sophie",
+    "score": 16,
+    "speed": "3"
+  },
+  {
     "name": "soso",
     "score": 10,
     "speed": "3"
@@ -25,28 +30,23 @@
     "speed": "3"
   },
   {
-    "name": "ggg",
-    "score": 2,
+    "name": "coucou",
+    "score": 3,
     "speed": "3"
   },
   {
     "name": "",
-    "score": 2,
+    "score": 3,
     "speed": "3"
   },
   {
     "name": "",
-    "score": 2,
+    "score": 3,
     "speed": "3"
   },
   {
     "name": "",
-    "score": 2,
-    "speed": "3"
-  },
-  {
-    "name": "pssd",
-    "score": 1,
+    "score": 3,
     "speed": "3"
   }
 ]
