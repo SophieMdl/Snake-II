@@ -15,6 +15,11 @@
     "speed": "4"
   },
   {
+    "name": "yoyo",
+    "score": 4,
+    "speed": "3"
+  },
+  {
     "name": "test",
     "score": 3,
     "speed": "3"
@@ -41,11 +46,6 @@
   },
   {
     "name": "pssd",
-    "score": 1,
-    "speed": "3"
-  },
-  {
-    "name": "",
     "score": 1,
     "speed": "3"
   }
