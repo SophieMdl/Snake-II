@@ -1,7 +1,7 @@
 const localhost = 'http://localhost:3000'
 const herokuhost = 'https://snake-with-high-score.herokuapp.com'
 
-const getFetchUrl = window.location.hostname.includes('herokuapp') ? heroku : localhost
+const getFetchUrl = window.location.hostname.includes('heroku') ? herokuhost : localhost
 
 let pause = false;
 let snakeSlice;
