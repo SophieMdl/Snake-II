@@ -1,7 +1,9 @@
 const localhost = 'http://localhost:3000'
-const herokuhost = 'https://snake-with-high-score.herokuapp.com/'
+const herokuhost = 'https://snake-with-high-score.herokuapp.com'
 
-const getFetchUrl = (window.location.hostname.includes('localhost')) ? localhost : herokuhost
+const getFetchUrl = (window.location.hostname.includes('herokuapp')) ? heroku : localhost
+
+console.log(`${getFetchUrl}/scores`);
 
 let pause = false;
 let snakeSlice;
@@ -175,7 +177,7 @@ const gameOver = () => {
           .then(() => fetchBestScore())
     }
     const fetchBestScore = () => {
-        window.fetch(`http://${getFetchUrl}/scores`)
+        window.fetch(`${getFetchUrl}/scores`)
             .then(res => res.json())
             .then(scores => {
                 displayBestScores(scores)
