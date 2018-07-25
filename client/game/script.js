@@ -1,4 +1,8 @@
-const port = process.env.PORT || 3000
+const localhost = 'http://localhost:3000'
+const herokuhost = 'https://snake-with-high-score.herokuapp.com/'
+
+const getFetchUrl = (window.location.hostname.includes('localhost')) ? localhost : herokuhost
+
 let pause = false;
 let snakeSlice;
 let tail;
@@ -10,7 +14,8 @@ const audio = {
 
 const appleSize = snakeSize = 15;
 
-let userSpeed;
+let snakeSpeed;
+let selectedSpeed = new Number();
 let scoreValue = 0;
 
 const score = document.querySelector('.score span');
@@ -33,7 +38,6 @@ const snake = {
     elem: document.getElementById('snake'),
     x: 0,
     y: game.height / 2,
-    speed: userSpeed,
     direction: 'right',
     size: snakeSize,
     length: 4,
@@ -111,7 +115,9 @@ const checkCollisions = () => {
         (snake.y <= (apple.y + apple.size))) { //bas
         audio.eat.play();
         resetApple();
-        ++scoreValue;
+        console.log(typeof(selectedSpeed), typeof(scoreValue));
+        scoreValue = scoreValue + selectedSpeed;
+        console.log(selectedSpeed);
         apple.collision = true;
     } else if (snake.x < 0 ||
         (snake.x + snake.size) > game.width ||
@@ -155,8 +161,7 @@ const gameOver = () => {
         }
     })
     const postScore = (name) => {
-
-        fetch(`${port}/post-scores`, {
+        fetch(`${getFetchUrl}/post-scores`, {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
@@ -164,13 +169,13 @@ const gameOver = () => {
             body: JSON.stringify({
               name: name,   
               score: scoreValue,
-              speed: select.value
+              speed: selectedSpeed
             })
           })
           .then(() => fetchBestScore())
     }
     const fetchBestScore = () => {
-        window.fetch(`http://${port}/scores`)
+        window.fetch(`http://${getFetchUrl}/scores`)
             .then(res => res.json())
             .then(scores => {
                 displayBestScores(scores)
@@ -194,13 +199,14 @@ const gameOver = () => {
 
 
 const init = () => {
+    selectedSpeed = parseInt(select.value)
     //Initialisation du jeu :
     menu.style.display = "none";
     resetApple();
     snakeBody();
     //Vitesse qui dépend de la vitesse définie :
-    userSpeed = 100 - 20 * (select.value - 1);
-    setInterval(loop, userSpeed);
+    snakeSpeed = 100 - 20 * (selectedSpeed - 1);
+    setInterval(loop, snakeSpeed);
     window.removeEventListener('keydown', init);
     window.addEventListener('keydown', listenerKeyboard = (e) => {
         snakeDirection(e);

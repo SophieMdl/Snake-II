@@ -6,6 +6,8 @@ const path = require('path')
 const router = express.Router();
 const app = express()
 
+const port = process.env.PORT || 3000
+
 const writeFile = util.promisify(fs.writeFile)
 const readFile = util.promisify(fs.readFile)
 
@@ -33,7 +35,7 @@ app.use((err, req, res, next) => {
     next(err)
 })
 
-app.listen(3000, () => {
+app.listen(`${port}`, () => {
     console.log("Listening on port 3000")
 })
 
