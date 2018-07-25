@@ -55,6 +55,7 @@ app.post('/post-scores', (req, res, next) => {
             console.log(content);
             return writeFile(filePath, content, 'utf8')
         })
+        .then(res.end('ok'))
         .catch(next)
 })
 

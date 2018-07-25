@@ -5,6 +5,11 @@
     "speed": "3"
   },
   {
+    "name": "12",
+    "score": 12,
+    "speed": 3
+  },
+  {
     "name": "soso",
     "score": 10,
     "speed": "3"
@@ -13,5 +18,25 @@
     "name": "Sophie",
     "score": 6,
     "speed": "3"
+  },
+  {
+    "name": "ffff",
+    "score": 6,
+    "speed": 3
+  },
+  {
+    "name": "ffff",
+    "score": 3,
+    "speed": 3
+  },
+  {
+    "name": "cccccccccccc",
+    "score": 0,
+    "speed": 3
+  },
+  {
+    "name": "cccc",
+    "score": 0,
+    "speed": 3
   }
 ]

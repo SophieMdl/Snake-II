@@ -146,8 +146,8 @@ const gameOver = () => {
     pause = true;
     menuEnd.style.display = "flex";
     scoreEnd.innerHTML = "Score : " + scoreValue;
-    window.removeEventListener('keydown', listenerKeyboard)
-    window.addEventListener('keydown', pressEnter = (e) => {
+    //window.removeEventListener('keydown', listenerKeyboard)
+    window.addEventListener('keydown', (e) => {
         if(e.which === 13){
             menuEnd.style.display = "none";
             apple.elem.style.display = "none";
@@ -159,8 +159,7 @@ const gameOver = () => {
         }
     })
     const postScore = (name) => {
-        console.log(name);
-        fetch(`${getFetchUrl}/post-scores`, {
+        window.fetch(`${getFetchUrl}/post-scores`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -188,7 +187,7 @@ const gameOver = () => {
                     <span>${score.speed}</span>`)
         }).join('')
     } 
-    window.removeEventListener('keydown', pressEnter)
+    //window.removeEventListener('keydown', pressEnter)
     window.addEventListener('keydown', (e) => {
         if(e.which === 27){
             window.location.reload()
@@ -207,7 +206,7 @@ const init = () => {
     snakeSpeed = 100 - 20 * (selectedSpeed - 1);
     setInterval(loop, snakeSpeed);
     window.removeEventListener('keydown', init);
-    window.addEventListener('keydown', listenerKeyboard = (e) => {
+    window.addEventListener('keydown', (e) => {
         snakeDirection(e);
     });
 }
