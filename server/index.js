@@ -36,31 +36,30 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
-    console.log("Listening on port 3000")
+    console.log("Listening on port", port)
 })
 
 app.post('/post-scores', (req, res, next) => {
     readFile(filePath, 'utf8')
-    .then(JSON.parse)
-    .then(scores => {
-        scores.push({
-            name: req.body.name || "",
-            score: req.body.score,
-            speed: req.body.speed
+        .then(JSON.parse)
+        .then(scores => {
+            scores.push({
+                name: req.body.name || "",
+                score: req.body.score,
+                speed: req.body.speed
+            })
+            scores.sort((a, b) => {
+                return b.score - a.score
+            }).splice(10, scores.length)
+            const content = JSON.stringify(scores, null, 2)
+            console.log(content);
+            return writeFile(filePath, content, 'utf8')
         })
-        scores.sort((a, b) => {
-            return b.score - a.score
-        }).splice(10, scores.length)
-        const content = JSON.stringify(scores, null, 2)
-        console.log(content);
-        return writeFile(filePath, content, 'utf8')
-    })
-    .then(() => res.send(scores))
-    .catch(next)
+        .catch(next)
 })
 
 app.get('/scores', (req, res) => {
     readFile(filePath, 'utf8')
-    .then(JSON.parse)
-    .then(scores => res.send(scores))
+        .then(JSON.parse)
+        .then(scores => res.send(scores))
 })

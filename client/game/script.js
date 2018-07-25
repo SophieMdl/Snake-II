@@ -1,9 +1,7 @@
 const localhost = 'http://localhost:3000'
 const herokuhost = 'https://snake-with-high-score.herokuapp.com'
 
-const getFetchUrl = (window.location.hostname.includes('herokuapp')) ? heroku : localhost
-
-console.log(`${getFetchUrl}/scores`);
+const getFetchUrl = window.location.hostname.includes('herokuapp') ? heroku : localhost
 
 let pause = false;
 let snakeSlice;
@@ -117,9 +115,7 @@ const checkCollisions = () => {
         (snake.y <= (apple.y + apple.size))) { //bas
         audio.eat.play();
         resetApple();
-        console.log(typeof(selectedSpeed), typeof(scoreValue));
         scoreValue = scoreValue + selectedSpeed;
-        console.log(selectedSpeed);
         apple.collision = true;
     } else if (snake.x < 0 ||
         (snake.x + snake.size) > game.width ||
@@ -163,18 +159,19 @@ const gameOver = () => {
         }
     })
     const postScore = (name) => {
+        console.log(name);
         fetch(`${getFetchUrl}/post-scores`, {
             method: 'post',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              name: name,   
-              score: scoreValue,
-              speed: selectedSpeed
+                name: name,   
+                score: scoreValue,
+                speed: selectedSpeed
             })
-          })
-          .then(() => fetchBestScore())
+        })
+        .then(() => fetchBestScore())
     }
     const fetchBestScore = () => {
         window.fetch(`${getFetchUrl}/scores`)
