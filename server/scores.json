@@ -1,27 +1,22 @@
 [
   {
     "name": "Sophie",
-    "score": 1,
+    "score": 6,
     "speed": "3"
   },
   {
-    "name": "cccvv",
-    "score": 0,
+    "name": "ggg",
+    "score": 2,
     "speed": "3"
   },
   {
-    "name": "ccc",
-    "score": 0,
+    "name": "",
+    "score": 2,
     "speed": "3"
   },
   {
-    "name": "ccc",
-    "score": 1,
-    "speed": "3"
-  },
-  {
-    "name": "ccvvv",
-    "score": 0,
+    "name": "",
+    "score": 2,
     "speed": "3"
   }
 ]

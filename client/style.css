@@ -93,7 +93,7 @@ select {
 }
 
 .custom-select {
-    background: url('img/arrow2.svg') no-repeat right transparent;
+    background: transparent;
     color: #fff;
     font-family: Courier;
     padding: 5px;

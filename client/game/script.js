@@ -152,11 +152,11 @@ const gameOver = () => {
                 snakeSlice.style.display = "none"
             }
             postScore(event.target.value)
-            
         }
     })
     const postScore = (name) => {
-        window.fetch(`http://localhost:3000/post-scores`, {
+        console.log("postScore");
+        fetch(`http://localhost:3000/post-scores`, {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
@@ -167,30 +167,29 @@ const gameOver = () => {
               speed: select.value
             })
           })
-          .then(() => displayBestScores())
-            // .then(res => emailInput.setCustomValidity((res) ? '' : 'Ce email est déjà utilisé.'))
+          .then(() => fetchBestScore())
     }
     const fetchBestScore = () => {
-        return new Promise(resolve => 
-            window.fetch('http://localhost:3000/scores')
-                .then(res => res.json())
-                .then(scores => {
-                    resolve(scores);
-                })
-            )
+        console.log("fetch");
+        window.fetch('http://localhost:3000/scores')
+            .then(res => res.json())
+            .then(scores => {
+                displayBestScores(scores)
+            })
     }
-    const displayBestScores = async() => {
+    const displayBestScores = (scores) => {
         bestScores.style.display = "block";
-        const scores = await fetchBestScore()
         document.getElementById('players-score').innerHTML = scores.map(score => {
             return (`<span>${score.name}</span>
                     <span>${score.score}</span>
                     <span>${score.speed}</span>`)
         }).join('')
     } 
-    // window.addEventListener('keydown', () => {
-    //     window.location.reload();
-    // });
+    window.addEventListener('keydown', (e) => {
+        if(e.which === 27){
+            window.location.reload()
+        }
+    })
 }
 
 
@@ -229,5 +228,6 @@ const loop = () => {
 const addEventListeners = () => {
     window.addEventListener('keydown', init);
 }
+
 
 addEventListeners();

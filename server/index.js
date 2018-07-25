@@ -9,8 +9,10 @@ const app = express()
 const writeFile = util.promisify(fs.writeFile)
 const readFile = util.promisify(fs.readFile)
 
-const scores = require('./scores.json')
+// const scores = require('./scores.json')
 const filePath = path.join(__dirname, './scores.json')
+
+
 // Autorisation
 app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', request.headers.origin)
@@ -35,27 +37,28 @@ app.listen(3000, () => {
     console.log("Listening on port 3000")
 })
 
-app.use('/scores', (req, res) => {
-    scores.sort((a, b) => {
-        return b.score - a.score
-    })
-    res.send(scores)
-})
-
 app.post('/post-scores', (req, res, next) => {
     readFile(filePath, 'utf8')
     .then(JSON.parse)
     .then(scores => {
         scores.push({
-            name: req.body.name,
+            name: req.body.name || "",
             score: req.body.score,
             speed: req.body.speed
         })
-
-    const content = JSON.stringify(scores, null, 2)
-    console.log(content)
-    return writeFile(filePath, content, 'utf8')
+        scores.sort((a, b) => {
+            return b.score - a.score
+        }).splice(10, scores.length)
+        const content = JSON.stringify(scores, null, 2)
+        console.log(content);
+        return writeFile(filePath, content, 'utf8')
     })
-    .then(() => res.end('OK'))
+    .then(() => res.send(scores))
     .catch(next)
+})
+
+app.get('/scores', (req, res) => {
+    readFile(filePath, 'utf8')
+    .then(JSON.parse)
+    .then(scores => res.send(scores))
 })
