@@ -6,6 +6,8 @@ const path = require('path')
 const router = express.Router();
 const app = express()
 
+app.use(express.static('client'));
+
 const port = process.env.PORT || 3000
 
 const writeFile = util.promisify(fs.writeFile)
