@@ -156,7 +156,7 @@ const displayInputScore = e => {
     for (let snakeSlice of snake) {
         snakeSlice.style.display = "none";
     }
-    postScore(event.target.value);
+    postScore(e.target.value);
     window.removeEventListener('keydown', pressEnter)
 }
 const postScore = (name) => {
@@ -171,7 +171,7 @@ const postScore = (name) => {
             speed: selectedSpeed
         })
     })
-        .then(() => fetchBestScore())
+    .then(() => fetchBestScore())
 }
 const fetchBestScore = () => {
     window.fetch(`${getFetchUrl}/scores`)
@@ -190,6 +190,7 @@ const displayBestScores = (scores) => {
 }
 window.addEventListener('keydown', (e) => {
     if (e.which === 27) {
+        console.log("esc");
         window.location.reload()
     }
 })
