@@ -140,60 +140,59 @@ const resetApple = () => {
     apple.elem.style.left = apple.x + 'px';
 }
 
-
 const gameOver = () => {
     audio.hurt.play();
     pause = true;
     menuEnd.style.display = "flex";
     scoreEnd.innerHTML = "Score : " + scoreValue;
-    //window.removeEventListener('keydown', listenerKeyboard)
-    window.addEventListener('keydown', (e) => {
-        if(e.which === 13){
-            menuEnd.style.display = "none";
-            apple.elem.style.display = "none";
-            const snake = document.getElementsByClassName('snake');
-            for(let snakeSlice of snake){
-                snakeSlice.style.display = "none";
-            }
-            postScore(event.target.value);
-        }
-    })
-    const postScore = (name) => {
-        window.fetch(`${getFetchUrl}/post-scores`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,   
-                score: scoreValue,
-                speed: selectedSpeed
-            })
+    window.removeEventListener('keydown', listenerKeyboard)
+    window.addEventListener('keydown', pressEnter = (e) => displayInputScore(e))
+}
+const displayInputScore = e => {
+    if (e.which !== 13) return
+    menuEnd.style.display = "none";
+    apple.elem.style.display = "none";
+    const snake = document.getElementsByClassName('snake');
+    for (let snakeSlice of snake) {
+        snakeSlice.style.display = "none";
+    }
+    postScore(event.target.value);
+    window.removeEventListener('keydown', pressEnter)
+}
+const postScore = (name) => {
+    window.fetch(`${getFetchUrl}/post-scores`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            score: scoreValue,
+            speed: selectedSpeed
         })
+    })
         .then(() => fetchBestScore())
-    }
-    const fetchBestScore = () => {
-        window.fetch(`${getFetchUrl}/scores`)
-            .then(res => res.json())
-            .then(scores => {
-                displayBestScores(scores)
-            })
-    }
-    const displayBestScores = (scores) => {
-        bestScores.style.display = "block";
-        document.getElementById('players-score').innerHTML = scores.map(score => {
-            return (`<span>${score.name}</span>
+}
+const fetchBestScore = () => {
+    window.fetch(`${getFetchUrl}/scores`)
+        .then(res => res.json())
+        .then(scores => {
+            displayBestScores(scores)
+        })
+}
+const displayBestScores = (scores) => {
+    bestScores.style.display = "block";
+    document.getElementById('players-score').innerHTML = scores.map(score => {
+        return (`<span>${score.name}</span>
                     <span>${score.score}</span>
                     <span>${score.speed}</span>`)
-        }).join('')
-    } 
-    
-    window.addEventListener('keydown', (e) => {
-        if(e.which === 27){
-            window.location.reload()
-        }
-    })
+    }).join('')
 }
+window.addEventListener('keydown', (e) => {
+    if (e.which === 27) {
+        window.location.reload()
+    }
+})
 
 
 const init = () => {
@@ -206,14 +205,12 @@ const init = () => {
     snakeSpeed = 100 - 20 * (selectedSpeed - 1);
     setInterval(loop, snakeSpeed);
     window.removeEventListener('keydown', init);
-    window.addEventListener('keydown', (e) => {
-        snakeDirection(e);
-    });
+    window.addEventListener('keydown', listenerKeyboard = (e) => snakeDirection(e));
 }
 
 const render = () => {
     //Changement de position de chaque élément du tableau serpent et calcul du score
-    for (let i = 0; i < snake.length; i++) { 
+    for (let i = 0; i < snake.length; i++) {
         snake.body[i].snakeSlice.style.top = snake.body[i].y + 'px';
         snake.body[i].snakeSlice.style.left = snake.body[i].x + 'px';
     }
