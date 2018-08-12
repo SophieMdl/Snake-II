@@ -187,7 +187,7 @@ const gameOver = () => {
                     <span>${score.speed}</span>`)
         }).join('')
     } 
-    //window.removeEventListener('keydown', pressEnter)
+    
     window.addEventListener('keydown', (e) => {
         if(e.which === 27){
             window.location.reload()
