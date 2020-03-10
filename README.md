@@ -1,7 +1,7 @@
 # Snake
 Snake - Javacript ES6
 
-Création personnelle d'un jeu de snake en JS avec un tableau des scores (réalisé en autodidacte avant ma formation en développement puis mis à jour en 2018 avec NodeJS pour les scores).
+Création d'un jeu de snake en JS avec un tableau des scores. Réalisé en autodidacte avant ma formation en développement puis mis à jour en 2018 avec NodeJS pour stocker le score dans un fichier JSON.
 
 Touche directionnelles : haut, bas, gauche, droite
 
