@@ -6,7 +6,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "client": "0.0.1",
-    "electron": "^2.0.5",
+    "electron": "^9.4.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-fetch": "^1.2.1",
     "electron-reload": "^1.2.5",
